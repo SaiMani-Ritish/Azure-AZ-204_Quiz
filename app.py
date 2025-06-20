@@ -552,6 +552,7 @@ quiz_questions = [
     }
 ]
 
+
 # Initialize Streamlit session state variables
 if 'current_question_index' not in st.session_state:
     st.session_state.current_question_index = 0
@@ -578,7 +579,7 @@ if st.session_state.quiz_finished:
         st.session_state.show_feedback = False
         st.session_state.user_answer = None
         st.session_state.quiz_finished = False
-        st.experimental_rerun()
+        st.rerun() # Changed from st.experimental_rerun()
 else:
     # Display current question
     current_question = quiz_questions[st.session_state.current_question_index]
@@ -586,25 +587,22 @@ else:
     st.write(current_question["question"])
 
     # Display options
-    # Use st.radio for single-choice selection
     selected_option = st.radio(
         "Choose your answer:",
         options=current_question["options"],
         key=f"question_{st.session_state.current_question_index}",
-        disabled=st.session_state.show_feedback # Disable radio buttons after submission
+        disabled=st.session_state.show_feedback
     )
 
     # Check answer button
     if st.button("Submit Answer", disabled=st.session_state.show_feedback):
         st.session_state.user_answer = selected_option
         st.session_state.show_feedback = True
-        # Determine if the answer is correct
-        # Get the letter of the selected option (e.g., "A. Option Text" -> "A")
         selected_answer_letter = st.session_state.user_answer.split('.')[0]
         if selected_answer_letter == current_question["correct_answer"]:
             st.session_state.score += 1
 
-        st.experimental_rerun() # Rerun to show feedback and disable buttons
+        st.rerun() # Changed from st.experimental_rerun()
 
     # Display feedback if submitted
     if st.session_state.show_feedback:
@@ -622,4 +620,4 @@ else:
             st.session_state.user_answer = None
             if st.session_state.current_question_index >= len(quiz_questions):
                 st.session_state.quiz_finished = True
-            st.experimental_rerun()
+            st.rerun() # Changed from st.experimental_rerun()
