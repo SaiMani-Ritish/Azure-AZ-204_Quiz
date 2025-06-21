@@ -16,7 +16,7 @@ This repository contains a simple, interactive quiz application built with Strea
 └── README.md
 ```
 
-**Note:** The original AZ-204 exam dumps, from which these questions were extracted, are included in the dumps/ directory for your reference.
+**Note:** The original AZ-204 exam dumps, from which these questions were extracted, are included in the dumps/ directory for reference.
 
 ### Getting Started
 Follow these instructions to set up and run the quiz application on your local machine.
@@ -35,9 +35,9 @@ cd Azure-AZ-204_Quiz
 Create a virtual environment (recommended):
 
 ```python -m venv venv```
-# On Windows:
+#### On Windows:
 .\venv\Scripts\activate
-# On macOS/Linux:
+#### On macOS/Linux:
 source venv/bin/activate
 
 Install the required dependencies:
